@@ -1,7 +1,8 @@
-import { BrowserRouter, Route, Routes } from "react-router";
+import { BrowserRouter, Route, Routes } from 'react-router';
 
-import AboutPage from "../pages/About";
-import DashboardPage from "../pages/DashboardPage";
+import AboutPage from 'pages/About';
+import DashboardPage from 'pages/DashboardPage';
+import NotFoundPage from 'pages/NotFoundPage';
 
 export const RootNavigation = () => {
   return (
@@ -9,6 +10,7 @@ export const RootNavigation = () => {
       <Routes>
         <Route index element={<DashboardPage />} />
         <Route path="about" element={<AboutPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );

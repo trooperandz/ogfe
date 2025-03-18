@@ -1,7 +1,8 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import { AppContentProvider } from "./providers/AppProvider";
-import { RootNavigation } from "./navigation/index";
+import { RootNavigation } from 'navigation/index';
+
+import { AppContentProvider } from 'providers/AppProvider';
 
 const queryClient = new QueryClient();
 

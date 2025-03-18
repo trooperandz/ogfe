@@ -1,6 +1,4 @@
-// Only for temp-example global state, until decide to use Redux Toolkit or another lib for global state and can remove if want
-
-import React from "react";
+import React from 'react';
 
 type AppContentState = {
   testConfig?: string;
@@ -8,13 +6,14 @@ type AppContentState = {
 
 const AppContentContext = React.createContext<AppContentState>({});
 
+// Only for temp-example global state, until decide to use Redux Toolkit or another lib for global state and can remove if want
 export const AppContentProvider: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
-  const [configState, setConfigState] = React.useState<string>("");
+  const [configState, setConfigState] = React.useState<string>('');
 
   React.useEffect(() => {
-    setConfigState("test");
+    setConfigState('test');
   }, []);
 
   const state: AppContentState = React.useMemo(() => {
