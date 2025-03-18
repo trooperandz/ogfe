@@ -1,0 +1,44 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them,
+# build the source code and run the linting checks (eslint/prettier/typescript)
+
+name: Run linting checks
+
+on:
+  push:
+    branches:
+      - '**' # Runs on push to any branch
+  pull_request:
+    branches:
+      - main # Runs on PRs to main (optional)
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+      # Checkout current branch
+      - uses: actions/checkout@v4
+
+      # Setup node
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      # install dependencies (this ensures that the exact versions specified in package-lock.json are installed.
+      # Command will fail if these are out of sync.
+      - name: Install dependencies
+        run: npm ci
+
+      # Run eslint/prettier checks
+      - name: Run linting checks
+        run: npm run lint
+
+      # Run typescript check
+      - name: Run TypeScript check
+        run: npm run ts-check

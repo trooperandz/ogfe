@@ -1,9 +1,10 @@
 import * as React from 'react';
 
-import { AppContentContext } from 'providers/AppProvider';
+import { AppContentContext, AppContentState } from 'providers/AppProvider';
 
 export const useAppContext = () => {
-  const { user } = React.useContext(AppContentContext);
+  const { user, setUser } =
+    React.useContext<AppContentState>(AppContentContext);
 
-  return { user } as const;
+  return { user, setUser } as const;
 };

@@ -1,10 +1,12 @@
 import { useAppContext } from 'hooks';
-import * as React from 'react';
 
 import { Link } from 'components/Link';
 
+import { useGetWeather } from 'networking/queryClient/hooks';
+
 export default function DashboardPage() {
   const appState = useAppContext();
+  const { weatherData } = useGetWeather();
 
   return (
     <div className="bg-slate-900 h-screen">
@@ -12,8 +14,14 @@ export default function DashboardPage() {
         <Link url="/about" text="About >" />
       </div>
 
+      {weatherData ? (
+        <div className="absolute right-4 top-4">
+          <p>Austin Temp: {weatherData.current.temp_f} F</p>
+        </div>
+      ) : null}
+
       <div className="flex flex-col items-center mb-30">
-        <h1 className="pt-8 text-center">Fluid Interaction Layer</h1>
+        <h1 className="pt-16 md:pt-10 text-center">Fluid Interaction Layer</h1>
         <h3 className="text-amber-600">Hello, {appState.user}</h3>
       </div>
 

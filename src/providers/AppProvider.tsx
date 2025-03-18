@@ -1,7 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 
-type AppContentState = {
+export type AppContentState = {
   user?: string;
+  setUser?: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export const AppContentContext = React.createContext<AppContentState>({});
@@ -12,6 +13,7 @@ export const AppContentProvider: React.FC<React.PropsWithChildren> = ({
 }) => {
   const [user, setUser] = React.useState<string>('');
 
+  // Can load user data etc upfront right here
   React.useEffect(() => {
     setUser('Hassan');
   }, []);
@@ -19,6 +21,7 @@ export const AppContentProvider: React.FC<React.PropsWithChildren> = ({
   const state: AppContentState = React.useMemo(() => {
     return {
       user,
+      setUser,
     };
   }, [user]);
 
