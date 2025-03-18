@@ -1,26 +1,26 @@
 import React from 'react';
 
 type AppContentState = {
-  testConfig?: string;
+  user?: string;
 };
 
-const AppContentContext = React.createContext<AppContentState>({});
+export const AppContentContext = React.createContext<AppContentState>({});
 
 // Only for temp-example global state, until decide to use Redux Toolkit or another lib for global state and can remove if want
 export const AppContentProvider: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
-  const [configState, setConfigState] = React.useState<string>('');
+  const [user, setUser] = React.useState<string>('');
 
   React.useEffect(() => {
-    setConfigState('test');
+    setUser('Hassan');
   }, []);
 
   const state: AppContentState = React.useMemo(() => {
     return {
-      testConfig: configState,
+      user,
     };
-  }, [configState]);
+  }, [user]);
 
   return (
     <AppContentContext.Provider value={state}>
