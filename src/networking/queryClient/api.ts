@@ -1,25 +1,14 @@
 import axios from 'axios';
 
-// const baseUrl = 'https://api.weatherapi.com/v1/current.json?key=c6998a9dd63643ecbd2180838221912&q=Austin&aqi=no';
-const baseUrl = 'https://api.weatherapi.com/v1/current.json';
+const baseUrl = 'http://127.0.0.1:5000/';
 
-export type WeatherData = {
-  current: {
-    temp_f: number;
-  };
-};
+export type SummaryData = Array<string[]>;
 
 // Example axios fetch
-export const fetchWeather = async (): Promise<WeatherData> => {
+export const fetchReportSummary = async (): Promise<SummaryData> => {
   try {
-    const response = await axios.get<WeatherData>(`${baseUrl}`, {
-      params: {
-        key: 'c6998a9dd63643ecbd2180838221912',
-        q: 'Austin',
-        aqi: 'no',
-      },
-    });
-    console.log({ response });
+    const response = await axios.get<SummaryData>(`${baseUrl}`);
+
     return response.data;
   } catch (err) {
     console.warn(err);

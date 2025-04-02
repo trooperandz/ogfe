@@ -1,16 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { fetchWeather } from './api';
+import { fetchReportSummary } from './api';
 
-export const useGetWeather = () => {
+export const useGetSummaryReport = () => {
   const { isPending, data, error } = useQuery({
-    queryKey: ['weather'],
-    queryFn: fetchWeather,
+    queryKey: ['summary_report'],
+    queryFn: fetchReportSummary,
   });
 
   return {
-    isPendingWeather: isPending,
-    weatherData: data,
-    weatherError: error,
+    isPendingSummaryReport: isPending,
+    summaryReportData: data,
+    summaryReportError: error,
   } as const;
 };
